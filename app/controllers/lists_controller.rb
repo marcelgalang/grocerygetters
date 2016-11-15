@@ -23,9 +23,6 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
-    if !can_current_user?(:edit, @list) # the answer should be no.
-      redirect_to root_path, :notice => "Can't find that..."
-    end
   end
 
 
