@@ -1,22 +1,14 @@
-<%= form_for(list) do |f| %>
-  <% if list.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
+<%= form_for(@list) do |list_form| %>
+  <p><%= list_form.label :name %> <%= list_form.text_field :name %></p>
 
-      <ul>
-      <% list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <p>
+    <%= list_form.fields_for :items, @list.items do |item_field| %>
+      <p>
+        <%= item_field.text_field :description %>
+      </p>
+    <% end %>
+  </p>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= list_form.submit %>
 <% end %>
