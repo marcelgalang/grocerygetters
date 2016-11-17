@@ -18,12 +18,3 @@
     <% end %>
   </ul>
 </section>
-
-<footer id="footer">
-  <% if current_user %>
-    You are logged in as: <%= current_user.username %>
-
-    <p><%= link_to "Logout", logout_path %></p>
-  <% end %>
-
-</footer>

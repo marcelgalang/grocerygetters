@@ -25,12 +25,19 @@ class ItemsController < ApplicationController
     redirect_to @list
   end
 
+  def update
+    @list = List.find(params[:list_id])
+    @item = @list.items.build(item_params)
+    @item.save
+    redirect_to @list
+  end
+
 
   def destroy
     @item.destroy
     redirect_to items_url, notice: 'Item was successfully destroyed.'
     end
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
