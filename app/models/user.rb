@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  
-
   has_many :shared_lists
   has_many :lists, :through => :shared_lists
   TEMP_EMAIL_PREFIX = 'change@me'
