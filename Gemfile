@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'record_tag_helper'
 
 gem 'devise'
 gem 'omniauth'
