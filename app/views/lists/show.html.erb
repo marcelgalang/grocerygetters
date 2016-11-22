@@ -14,7 +14,15 @@
     </ul>
   </section>
   <footer class="footer">
-    <label>Add Users to List</label>
-  
+    <div>Add Users to List
+      <%= f.select :user_name, User.pluck(:name) %>
+
+      <%= form_for([@list, user]) do |f| %>
+        <%= f.select() :description, :class => "new-todo", :placeholder => (@item.errors.full_messages_for(:description).first || "Enter a new item...") %>
+        <%= f.submit :style => "display: none" %>
+      <% end %>
+
+    </div>
+
   </footer>
 </section>
