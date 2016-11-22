@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  # before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all
@@ -21,15 +21,25 @@ class ItemsController < ApplicationController
   def create
     @list = List.find(params[:list_id])
     @item = @list.items.build(item_params)
-    @item.save
-    redirect_to @list
+    if @item.save
+      redirect_to list_path(@list)
+    else
+      render "lists/show"
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+
+    redirect_to list_path(@item.list)
   end
 
 
   def destroy
     @item.destroy
     redirect_to items_url, notice: 'Item was successfully destroyed.'
-    end
+
   end
 
   private

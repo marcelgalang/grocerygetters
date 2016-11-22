@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115155016) do
+ActiveRecord::Schema.define(version: 20161120011409) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,14 +23,22 @@ ActiveRecord::Schema.define(version: 20161115155016) do
 
   create_table "items", force: :cascade do |t|
     t.text     "description"
-    t.boolean  "status"
+    t.integer  "status",      default: 0
     t.integer  "list_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "lists", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shared_lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.integer  "permission"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
